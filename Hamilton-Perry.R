@@ -315,6 +315,8 @@ plot_pyramid <- ggplot(
 
 print(plot_pyramid)
 
+# ggsave(filename = "img/pyramids.png", width = 8, height = 6, dpi = 320)
+
 # Plot 2: Total Population Trajectory (2020 - 2050)
 historical_totals <- df_long |>
   group_by(year) |>
