@@ -11,6 +11,40 @@ library(tidyverse)
 library(stringr)
 library(patchwork)
 
+# ==============================================================================
+# Brand Color Palette Setup
+# ==============================================================================
+brand_colors <- c(
+  dark_teal = "#294648",
+  lime_olive = "#9cbd1b",
+  green_yellow = "#88b027",
+  dark_green = "#00883c",
+  mid_green = "#439f36",
+  yellow_green = "#bbc808",
+  forest_green = "#0d933a",
+  bright_yel = "#c7d301"
+)
+
+# Map specific brand colors to data categories
+# 1. Sex Palette (Used in the Pyramid Plot)
+color_sex <- c(
+  "male"   = brand_colors["dark_teal"],
+  "female" = brand_colors["lime_olive"]
+)
+
+# 2. Scenario Palette (Used in the Trajectory Plots)
+# Ground the historical data in the darkest color, and use a gradient of
+# greens/yellows for the projections.
+color_scenarios <- c(
+  "Historical (BPS)" = brand_colors["dark_teal"],
+  "Max"              = brand_colors["dark_green"],
+  "Mean"             = brand_colors["mid_green"],
+  "Min"              = brand_colors["bright_yel"],
+  # Map UN variants to match the equivalent Hamilton-Perry scenarios
+  "High"             = brand_colors["dark_green"],
+  "Momentum"         = brand_colors["mid_green"],
+  "Low"              = brand_colors["bright_yel"]
+)
 
 # Suppress CMD check/lintr warnings for variables used in dplyr pipelines
 utils::globalVariables(c(
@@ -268,7 +302,7 @@ plot_pyramid <- ggplot(
   geom_col() +
   facet_wrap(~year_factor) +
   scale_x_continuous(labels = abs) +
-  scale_fill_manual(values = c("male" = "steelblue", "female" = "salmon")) +
+  scale_fill_manual(values = color_sex) +
   labs(
     title = "Kota Semarang Population Pyramid: 2020 vs 2035",
     subtitle = "Original BPS Projections",
@@ -310,12 +344,7 @@ plot_trajectory <- ggplot(
 ) +
   geom_line(linewidth = 1.2) +
   geom_point(size = 2) +
-  scale_color_manual(
-    values = c(
-      "Historical (BPS)" = "black", "Max" = "darkgreen",
-      "Mean" = "blue", "Min" = "red"
-    )
-  ) +
+  scale_color_manual(values = color_scenarios) +
   scale_linetype_manual(
     values = c(
       "Historical (BPS)" = "solid", "Max" = "dashed",
@@ -365,12 +394,7 @@ plot_wa_trajectory <- ggplot(
 ) +
   geom_line(linewidth = 1.2) +
   geom_point(size = 2) +
-  scale_color_manual(
-    values = c(
-      "Historical (BPS)" = "black", "Max" = "darkgreen",
-      "Mean" = "blue", "Min" = "red"
-    )
-  ) +
+  scale_color_manual(values = color_scenarios) +
   scale_linetype_manual(
     values = c(
       "Historical (BPS)" = "solid", "Max" = "dashed",
@@ -412,9 +436,7 @@ plot_un_wa_trajectory <- ggplot(
 ) +
   geom_line(linewidth = 1.2) +
   geom_point(size = 2) +
-  scale_color_manual(
-    values = c("Momentum" = "darkgreen", "High" = "blue", "Low" = "red")
-  ) +
+  scale_color_manual(values = color_scenarios) +
   scale_linetype_manual(
     values = c("Momentum" = "solid", "High" = "dashed", "Low" = "dashed")
   ) +
