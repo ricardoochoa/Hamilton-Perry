@@ -28,22 +28,22 @@ brand_colors <- c(
 # Map specific brand colors to data categories
 # 1. Sex Palette (Used in the Pyramid Plot)
 color_sex <- c(
-  "male"   = brand_colors["dark_teal"],
-  "female" = brand_colors["lime_olive"]
+  "male"   = as.character(brand_colors["dark_teal"]),
+  "female" = as.character(brand_colors["lime_olive"])
 )
 
 # 2. Scenario Palette (Used in the Trajectory Plots)
 # Ground the historical data in the darkest color, and use a gradient of
 # greens/yellows for the projections.
 color_scenarios <- c(
-  "Historical (BPS)" = brand_colors["dark_teal"],
-  "Max"              = brand_colors["dark_green"],
-  "Mean"             = brand_colors["mid_green"],
-  "Min"              = brand_colors["bright_yel"],
+  "Historical (BPS)" = as.character(brand_colors["dark_teal"]),
+  "Max"              = as.character(brand_colors["dark_green"]),
+  "Mean"             = as.character(brand_colors["mid_green"]),
+  "Min"              = as.character(brand_colors["bright_yel"]),
   # Map UN variants to match the equivalent Hamilton-Perry scenarios
-  "High"             = brand_colors["dark_green"],
-  "Momentum"         = brand_colors["mid_green"],
-  "Low"              = brand_colors["bright_yel"]
+  "High"             = as.character(brand_colors["dark_green"]),
+  "Momentum"         = as.character(brand_colors["mid_green"]),
+  "Low"              = as.character(brand_colors["bright_yel"])
 )
 
 # Suppress CMD check/lintr warnings for variables used in dplyr pipelines
