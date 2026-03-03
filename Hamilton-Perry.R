@@ -60,7 +60,7 @@ utils::globalVariables(c(
 # 1. Data Loading and Preparation
 # ------------------------------------------------------------------------------
 # Ensure the file name matches your working directory exactly
-file_path <- "kota_semarang_bps_data.csv"
+file_path <- "data/kota_semarang_bps_data.csv"
 df <- read_csv(file_path)
 
 # Pivot the data to a long format and filter for 5-year intervals
@@ -419,7 +419,7 @@ plot_wa_trajectory <- ggplot(
 # UN data reference: United Nations, Department of Economic and Social Affairs,
 # Population Division (2024). World Population Prospects 2024, Online Edition.
 # https://population.un.org/
-un_df <- read_csv("Indonesia_UN_estimates.csv")
+un_df <- read_csv("data/Indonesia_UN_estimates.csv")
 
 # Filter for working age (15-64) and select High/Low variants between
 # 2020 and 2050
